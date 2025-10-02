@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Bookmark Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #11b5de;
+    }
+    h1 {
+      text-align: center;
+    }
+    .bookmark-form {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    input {
+      font-style: bold;
+      padding: 8px;
+      margin: 5px;
+      width: 200px;
+    }
+    button {
+      margin-top: 2px;
+      padding: 8px 12px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 23px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+     #wishBox {
+      display: none; /* hidden at first */
+      background: rgb(83, 185, 10);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      font-size: 1.5rem;
+      color: #d35400;
+      font-weight: bold;
+      animation: fadeIn 1.50s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #480e94;
+      margin: 5px 0;
+      padding: 10px;
+      border: 1px solid rgb(206, 65, 9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 1px;
+    }
+    .img{margin-top: 99px;
+       text-shadow: 2px 3px 4px rgb(255, 238, 0);
+      
+      
+     
+    }
+    a {
+      text-decoration: none;
+      color: #007BFF;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>📑 My Bookmarks</h1>
+
+  <div class="bookmark-form">
+    <input type="text" id="siteName" placeholder="Website Name">
+    <input type="text" id="siteUrl" placeholder="Website URL (https://)">
+    <button onclick="addBookmark()">Add Bookmark</button><BR>
+     <button id="showWishBtn">Click to Show Wish</button>
+  <div id="wishBox"></div>
+    <div class="img">
+      <img src="sudhansu.jpj.jpeg" alt="Circle" style="width:300px; border-radius:15px; width="300" height="200">
+      <h3>Created by coder sudhansu</h3>
+      
+    </div>
+  </div>
+
+  <ul id="bookmarkList"></ul>
+
+  <script>
+    // Function to add a new bookmark
+    function addBookmark() {
+      let name = document.getElementById("siteName").value;
+      let url = document.getElementById("siteUrl").value;
+
+      if (!name || !url) {
+        alert("Please enter both name and URL");
+        return;
+      }
+
+      // Create list item
+      let li = document.createElement("li");
+      li.innerHTML = `
+        <a href="${url}" target="_blank">${name}</a>
+        <button onclick="this.parentElement.remove()">Delete</button>
+      `;
+
+      document.getElementById("bookmarkList").appendChild(li);
+
+      // Clear input fields
+      document.getElementById("siteName").value = "";
+      document.getElementById("siteUrl").value = "";
+    }
+  </script>
+  <script>
+    const btn = document.getElementById("showWishBtn");
+    const wishBox = document.getElementById("wishBox");
+
+    btn.addEventListener("click", () => {
+      // Append the message
+      wishBox.textContent = "🎉 Wishing Happy Bijaya Dassami to All of You 🎉";
+      wishBox.style.display = "block";
+      btn.style.display = "none"; // hide button
+
+      // Hide after 5 seconds
+      setTimeout(() => {
+        wishBox.style.display = "none";
+        btn.style.display = "block"; // show button again
+      }, 3000);
+    })
+
+  </script>
+</body>
+</html>
